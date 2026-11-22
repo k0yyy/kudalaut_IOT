@@ -1,0 +1,57 @@
+{
+  "version": 1,
+  "author": "kudalaut",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 0, "left": 0, "attrs": {} },
+    {
+      "type": "wokwi-dht22",
+      "id": "dht",
+      "top": -105,
+      "left": 148,
+      "attrs": { "temperature": "-28.2" }
+    },
+    { "type": "wokwi-photoresistor-sensor", "id": "ldr", "top": -130, "left": -230, "attrs": {} },
+    { "type": "wokwi-gas-sensor", "id": "mq2", "top": 120, "left": -280, "attrs": {} },
+    { "type": "wokwi-servo", "id": "servo", "top": -120, "left": 300, "attrs": {} },
+    { "type": "wokwi-relay-module", "id": "relay", "top": 230, "left": 120, "attrs": {} },
+    {
+      "type": "wokwi-led",
+      "id": "ledRoom",
+      "top": 250,
+      "left": -120,
+      "attrs": { "color": "white" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 187.2,
+      "left": -115.75,
+      "rotate": 90,
+      "attrs": { "value": "220" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "dht:VCC", "esp:3V3", "red", [ "v0" ] ],
+    [ "dht:GND", "esp:GND.2", "black", [ "v0" ] ],
+    [ "dht:SDA", "esp:15", "green", [ "v0" ] ],
+    [ "ldr:VCC", "esp:3V3", "red", [ "v0" ] ],
+    [ "ldr:GND", "esp:GND.1", "black", [ "v0" ] ],
+    [ "ldr:AO", "esp:34", "green", [ "v0" ] ],
+    [ "mq2:VCC", "esp:5V", "red", [ "v0" ] ],
+    [ "mq2:GND", "esp:GND.1", "black", [ "v0" ] ],
+    [ "mq2:AOUT", "esp:35", "green", [ "v0" ] ],
+    [ "servo:V+", "esp:5V", "red", [ "v0" ] ],
+    [ "servo:GND", "esp:GND.2", "black", [ "v0" ] ],
+    [ "servo:PWM", "esp:18", "orange", [ "v0" ] ],
+    [ "relay:VCC", "esp:5V", "red", [ "v0" ] ],
+    [ "relay:GND", "esp:GND.2", "black", [ "v0" ] ],
+    [ "relay:IN", "esp:26", "purple", [ "v0" ] ],
+    [ "esp:2", "r1:1", "yellow", [ "v0" ] ],
+    [ "r1:2", "ledRoom:A", "yellow", [ "v0" ] ],
+    [ "ledRoom:C", "esp:GND.1", "black", [ "v0" ] ]
+  ],
+  "dependencies": {}
+}
